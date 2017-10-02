@@ -21,9 +21,12 @@ class MessageConsumer():
             print('MESSAGE CONSUMER ERROR:\n{}'.format(err))
 
 def callback(ch, method, properties, body):
-    print(" ... channel: {}".format(ch))
-    print(" ... routing key: {}".format(method.routing_key))
-    print(" ... body is: {}".format(body))
+    # print(" ... channel: {}".format(ch))
+    # print(" ... routing key: {}".format(method.routing_key))
+    # print(" ... body is: {}".format(body))
+    # REFACTOR: there should be a wya to reference back to the consumer.
+    #           That would enable you to create unpacker once and simply
+    #           invoke it from ehre instead of creating one for each callback.
     unpacker = MessageUnpacker()
     # for testing, just unpacking string represented messages (with numerica data as data)
     dict_record = unpacker.unpack_string_to_dict(body)
@@ -33,5 +36,4 @@ def callback(ch, method, properties, body):
     	dest_table = 'error_data'
     else:
         dest_table = 'normal_data'
-    print('WANT TO INSERT RECORD HERE:\n')
     insert_car_data(dest_table, dict_record)

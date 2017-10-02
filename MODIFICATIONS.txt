@@ -1,0 +1,38 @@
+Sep 30 / Oct 1 (uploaded to github Oct 2)
+Following modifications were made.
+
+test_data_generation.py
+=> reflected changes to DataGenerator API where data source file is explicitly passed in
+
+insert_car_rec.py
+=> removed some of the print statements previously used for testing purposes
+=> added a print statement with timestamp to see when messages are written to (TimestampDB)
+
+create_chunks.py
+=> a short script to make it possible to create blocks of numbers having a particular file size
+=> makes it easier to test the throughput / data transfer rate
+
+data_generator.py
+=> renamed get_data method to grab_image_data (more accurate description)
+=> minor changes to reflect the fact that data source is passed in and stored as an instance property
+
+message_consumer.py
+=> made note to refactor the continual recreation of unpacker instance (inefficient) ... if there were more time, would check API to fix this
+
+message_packager.py
+=> removed some comments
+
+message_producer.py
+=> made exception statement more descriptive
+
+message_unpacker.py
+=> removed some print statements
+
+run_rabbit_races.py
+=> a script similar to run_rabbit_run.py that makes it possible to test
+multiple batches of records having a given size
+
+run_rabbit_run.py
+=> cleaned up the comments
+=> removed some commented out print statements
+=> switched from time to datetime for checking time

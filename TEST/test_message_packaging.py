@@ -4,7 +4,8 @@ from message_packager import *
 import time
 import sys
 
-dg = DataGenerator()
+DATA_SOURCE_FILE = '5_kB_chunk.txt'
+dg = DataGenerator(DATA_SOURCE_FILE)
 packager = MessagePackager()
 
 start_time = time.time()

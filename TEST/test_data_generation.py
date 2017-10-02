@@ -4,7 +4,8 @@ from data_generator import *
 import time
 import sys
 
-dg = DataGenerator()
+DATA_SOURCE_FILE = '1000_kB_chunk.txt'
+dg = DataGenerator(DATA_SOURCE_FILE)
 
 start_time = time.time()
 

@@ -1,16 +1,13 @@
 #!/usr/bin/python
 
 import psycopg2
-import time
-
+from datetime import datetime
 
 # Constructs the INSERT statement for Postgres depending on the destination table.
 # Insertion conforms to one of the "safe" approaches recommended.
 def construct_sql_stmt(dest_table):
-    print('In construct_sql_stmt dest_table is {}'.format(dest_table))
     insert_stmt = ''
     if dest_table == "normal_data":
-        print('Entering normal_data branch.')
         insert_stmt = """
                     INSERT into
                         normal_data
@@ -19,7 +16,6 @@ def construct_sql_stmt(dest_table):
                         (%(message_num)s, %(time_stamp)s, %(car_id)s, %(device_id)s, %(data_type)s, %(error_flag)s, %(data)s)
                     """
     elif dest_table == "error_data":
-        print('Entering error_data branch.')
         insert_stmt = """
                     INSERT into
                         error_data
@@ -36,7 +32,6 @@ def construct_sql_stmt(dest_table):
 # This method flexibly allows you to insert data into either table
 def insert_car_data(dest_table, dict_rec):
     sql = construct_sql_stmt(dest_table)
-    print('In insert_car_data sql statement is {}'.format(sql))
 
     if sql is not None:
         try:
@@ -45,10 +40,9 @@ def insert_car_data(dest_table, dict_rec):
                                   password="<PASSWORD>", \
                                   host="<HOST>", \
                                   port="<PORT>")
-            print("Opened database successfully.")
             cur = conn.cursor()
-            print('cursor is {}'.format(cur))
-            print('INSERTING DATA:  {}'.format(dict_rec))
+            print('Inserting message {} with flag {} at time {}'.\
+                   format(dict_rec['message_num'], dict_rec['error_flag'], datetime.now()))
             cur.execute(sql, dict_rec)
             conn.commit()
             conn.close()

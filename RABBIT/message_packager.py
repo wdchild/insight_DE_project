@@ -35,13 +35,9 @@ class MessagePackager():
     def package_data_as_string(self, dict_record):
         FIELD_DELIMITER = ';'
         RECORD_DELIMITER = '\n'
-        # print('Packaging record as string.')
         fields = ['message_num', 'time_stamp', 'car_id', 'device_id', 'data_type', 'error_flag']
 
-        # There's a more elegant (.join) way to do this, but you need to return strings for
-        # the numeric values, which complicates join. Need to refactor this later when (if) you have time.
-        # REFACTOR WHEN YOU HAVE TIME
-
+        # The join approach might be slower because of need to if/then whether int or float or str.
         string_rec = ''
         string_rec += str(dict_record['message_num']) + FIELD_DELIMITER
         string_rec += dict_record['time_stamp'] + FIELD_DELIMITER

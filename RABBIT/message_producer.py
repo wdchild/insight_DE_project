@@ -5,9 +5,6 @@
 import pika
 import sys
 
-# the position of error flag within a data record
-ERROR_FLAG_POSITION = 5
-
 class MessageProducer():
 
     def __init__(self):
@@ -21,7 +18,7 @@ class MessageProducer():
             # print('Channel: {}'.format(self.channel))
             self.channel.exchange_declare(exchange='car_logs', exchange_type='direct')
         except:
-            print('MESSAGE PRODUCER ERROR')
+            print('MESSAGE PRODUCER EXCEPTION: could not open channel')
 
     # If the first value in the tuple is 0, data is normal, else (1) indicates error
     @classmethod

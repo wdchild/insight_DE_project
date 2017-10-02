@@ -16,4 +16,17 @@ Code and resources are in one of four categories (and corresponding directories)
 Need to fix:
 - broken import links due to file reorganization
 
+How to use:
+(1) First you need to set up the TimescaleDB database with the correct fields. 
+    (See the records produced by data generator.) Be sure to include a primary key serial field.
+
+(2) Run the error consumer and normal consumer. These consume normal and error messages
+    from the producer.
+
+(3) Run the producer. To do this, choose either run_rabbit_run.py or run_rabbit_races.py.
+    For the latter, you can specify multiple data batch sizes as command line arguments.
+
+(4) Seed data of different sizes is provided in the SEED folder. Choose whichever
+    message size you want to test.
+
 

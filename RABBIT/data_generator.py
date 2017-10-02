@@ -5,7 +5,7 @@
 import datetime
 import random
 
-# Selects a random camera from within the range of cameras existing (1 ... n)
+# Selects a random camera from within the range of existing cameras (1 ... n)
 def random_camera (num_cameras):
     cam_num = str(random.randint(1, num_cameras))
     cam_ID = 'camera_' + cam_num
@@ -42,7 +42,7 @@ def determine_error_status (percent_errors):
 # If there is an error, no data is returned for the record.
 # If the record is deemed normal, then an image is appended to the data.
 # This is where you'll get the image file.
-def get_data (error_flag):
+def grab_image_data(error_flag):
     data = '' # assume an error
     if (error_flag == 0): # if normal data, we need an image (or number)
         source_path = 'lidar_one.jpg'
@@ -50,7 +50,7 @@ def get_data (error_flag):
         data = f.read()
     return data
 
-def data_as_dict (fields, values):
+def data_as_dict(fields, values):
     rec_as_dict = {}
     for f, v in zip (fields, values):
         rec_as_dict[f] = v
@@ -58,7 +58,7 @@ def data_as_dict (fields, values):
 
 '''Separating this method because I may use something more sophisticated here later.'''
 def grab_numeric_data(num_source_file):
-    # WRAP THIS IN A TRY STATEMENT IN CASE THE FILE IS MISSING
+    # SHOULD WRAP THIS IN A TRY STATEMENT IN CASE THE FILE IS MISSING
     with open(num_source_file, 'r') as fin:
         numeric_data = fin.read()
         if numeric_data.endswith('\n'): # remove \n from end if present
@@ -72,9 +72,12 @@ class DataGenerator():
         getting dropped somewhere along the pipeline.'''
     messages = 0
 
-
-    def __init__(self):
-        pass
+    ''' Source files for data generation are now passed in and stored as a property
+        for reuse. data_source should be renamed once you start importing the image data,
+        and the image data could then be stored as a separate property. If you wanted 
+        different image data samples, you could store them differently (e.g. list).'''
+    def __init__(self, source_file_name):
+        self.data_source = source_file_name
 
     ''' This method creates everything in the record except the actual data itself.
         Separating the record parts in this way makes it possible to add different
@@ -100,7 +103,7 @@ class DataGenerator():
     # This method appends numeric data to the partial data record, completing a "numeric record"
     def append_numeric_data(self, partial_record):
         if partial_record['error_flag'] == 0: # no error, so append numbers
-            partial_record['data'] = grab_numeric_data('chunk_of_numbers.txt')
+            partial_record['data'] = grab_numeric_data(self.data_source)
         else:
             partial_record['data'] = None
         return partial_record # which is now complete :)
