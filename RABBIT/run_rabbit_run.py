@@ -3,12 +3,16 @@ from message_packager import *
 from message_producer import *
 from datetime import datetime
 
+num_recs = input('How many records do you want to run? ')
+data_size = str(input('Pick a data size (1, 5, 10, 50, 100, 500, 1000, 5000, 10000 kB) '))
+print('Will process {} records in {} kB chunks'.format(num_recs, data_size))
+
 ''' By deciding in advance how many records you are sending, it is easier
     to determine how long it took for messages to go through each part of the pipe '''
-NUM_TEST_RECORDS = 1000 # SET WHAT YOU WANT HERE
+NUM_TEST_RECORDS = int(num_recs)
 
 ''' You set a source file of your choosing. Different "chunks of numbers" have been generated.'''
-DATA_SOURCE = '100_kB_chunk.txt'
+DATA_SOURCE = data_size + '_kB_chunk.txt'
 
 ''' Create an artificial data generator for testing purposes.
     each record produced by the data generator contains a unique (artificial)

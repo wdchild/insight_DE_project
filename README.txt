@@ -13,20 +13,30 @@ Code and resources are in one of four categories (and corresponding directories)
 -- TEST (for individual unit tests)
 -- SEED (for seed data used in data generation)
 
-Need to fix:
-- broken import links due to file reorganization
+Note that import links were broken when organizing the data for github.
+Broken links could be fixed by using import sys followed by a description of the 
+path, so that it would be possible to travel up one directory and back down another.
+Unfortunately, 'project time' has ended.
+
+e.g. 
+import sys
+sys.path.append(~/INSIGHT_DE_PROJECT/<DIRECTORY>)
+from <DIRECTORY> import <THE MODULE IN QUESTION>
 
 How to use:
 (1) First you need to set up the TimescaleDB database with the correct fields. 
     (See the records produced by data generator.) Be sure to include a primary key serial field.
+    Also be sure to create a hypertable (see TimescaleDB instructions).
 
-(2) Run the error consumer and normal consumer. These consume normal and error messages
+(2) Run the RabbitMQ  error consumer and normal consumer. These consume normal and error messages
     from the producer.
 
 (3) Run the producer. To do this, choose either run_rabbit_run.py or run_rabbit_races.py.
     For the latter, you can specify multiple data batch sizes as command line arguments.
+    The former lets you specify the data size (chunks) as well as the number of records 
+    in the batch.
 
 (4) Seed data of different sizes is provided in the SEED folder. Choose whichever
-    message size you want to test.
+    message size you want to test. run_rabbit_run.py makes this easy to do.
 
 
