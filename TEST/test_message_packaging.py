@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
+import sys
+sys.path.append("../RABBIT")
 from data_generator import *
 from message_packager import *
 import time
-import sys
 
 DATA_SOURCE_FILE = '5_kB_chunk.txt'
 dg = DataGenerator(DATA_SOURCE_FILE)

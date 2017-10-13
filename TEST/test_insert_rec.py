@@ -1,3 +1,5 @@
+import sys
+sys.path.append("../TIMESCALE")
 from insert_car_rec import *
 import datetime
 

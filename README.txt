@@ -1,4 +1,4 @@
-INSIGHT DATA ENGINEERING PROJECT: Daniel Child
+lINSIGHT DATA ENGINEERING PROJECT: Daniel Child
 
 This project seeks to test a configuration that would make it possible to stream
 data from prototype self-driving cars. Data is supposed to run to a RabbitMQ broker,
@@ -13,14 +13,11 @@ Code and resources are in one of four categories (and corresponding directories)
 -- TEST (for individual unit tests)
 -- SEED (for seed data used in data generation)
 
-Note that import links were broken when organizing the data for github.
-Broken links could be fixed by using import sys followed by a description of the 
-path, so that it would be possible to travel up one directory and back down another.
-Unfortunately, 'project time' has ended.
+Broken paths introduced by reorganizing the files have been fixed by using import sys.
 
 e.g. 
 import sys
-sys.path.append(~/INSIGHT_DE_PROJECT/<DIRECTORY>)
+sys.path.append(../<DIRECTORY>)
 from <DIRECTORY> import <THE MODULE IN QUESTION>
 
 How to use:

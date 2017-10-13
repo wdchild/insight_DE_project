@@ -1,5 +1,6 @@
 import pika
 import sys
+sys.path.append("../TIMESCALE")
 from message_unpacker import *
 from insert_car_rec import *
 

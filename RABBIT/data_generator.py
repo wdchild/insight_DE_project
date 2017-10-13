@@ -45,7 +45,7 @@ def determine_error_status (percent_errors):
 def grab_image_data(error_flag):
     data = '' # assume an error
     if (error_flag == 0): # if normal data, we need an image (or number)
-        source_path = 'lidar_one.jpg'
+        source_path = '../SEEDS/lidar_one.jpg'
         f = open(source_path, 'rb')
         data = f.read()
     return data

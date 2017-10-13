@@ -1,4 +1,6 @@
 # Simply tests that message unpacker works properly
+import sys
+sys.path.append("../RABBIT")
 from message_unpacker import *
 
 data_as_string = '1;2017-09-29 03:42:08.638426;car_1;sensor_8;number;0;13049871230948710329487130948123409812734019283741098374012987341023984130984712309481720398471034987\n'
