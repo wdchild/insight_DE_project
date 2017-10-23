@@ -41,3 +41,11 @@ run_rabbit_run.py
 	data_generator.py
 	test files
 	seed files
+
+October 23
+Moved the Django from server to this project. The dashboard has been there all 
+along, but since it only had mainly boiler plate code (and a little stuff
+specific to making it available for postgres) plus passwords and user names,
+I did not initially include it with the project. AWS being torn down, so 
+copying the dashboard over in case I want to reestablish the project
+on another server.
